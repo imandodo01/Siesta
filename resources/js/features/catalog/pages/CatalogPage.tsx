@@ -1,5 +1,5 @@
 import PublicLayout from "@/layouts/PublicLayout";
-import ProductCard from "../components/ProductCard";
+import Toolbar from "../components/Toolbar";
 import ProductGrid from "../components/ProductGrid";
 import { Products } from "../data/Products";
 import ProductFilter from "../components/ProductFilter";
@@ -23,10 +23,11 @@ export default function CatalogPage() {
                     </div>
 
                     <div className="lg:col-span-3">
+                        <Toolbar />
+                        <ProductGrid products={Products} />
                         {/* <div className="rounded-xl border border-[var(--color-border)] p-8 text-center">
                             Product Grid (Coming Soon)
                         </div> */}
-                        <ProductGrid products={Products} />
                     </div>
 
                 </div>
