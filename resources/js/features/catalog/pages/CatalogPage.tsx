@@ -2,12 +2,12 @@ import PublicLayout from "@/layouts/PublicLayout";
 import ProductCard from "../components/ProductCard";
 import ProductGrid from "../components/ProductGrid";
 import { Products } from "../data/Products";
+import ProductFilter from "../components/ProductFilter";
 
 export default function CatalogPage() {
     return (
         <PublicLayout>
             <div className="space-y-8">
-
                 <div>
                     <h1 className="text-4xl font-bold">
                         Products
@@ -17,11 +17,20 @@ export default function CatalogPage() {
                         Browse our collection.
                     </p>
                 </div>
+                <div className="grid grid-cols-1 gap-8 lg:grid-cols-4">
+                    <div>
+                        <ProductFilter />
+                    </div>
 
-                {/* <div className="rounded-xl border border-[var(--color-border)] p-8 text-center">
-                    Product Grid (Coming Soon)
-                </div> */}
-                <ProductGrid products={Products} />
+                    <div className="lg:col-span-3">
+                        {/* <div className="rounded-xl border border-[var(--color-border)] p-8 text-center">
+                            Product Grid (Coming Soon)
+                        </div> */}
+                        <ProductGrid products={Products} />
+                    </div>
+
+                </div>
+
 
             </div>
         </PublicLayout>
