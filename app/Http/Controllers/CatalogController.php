@@ -9,6 +9,6 @@ class CatalogController extends Controller
 {
     public function index(): Response
     {
-        return Inertia::render('public/pages/ProductsPage');
+        return Inertia::render('catalog/pages/CatalogPage');
     }
 }
