@@ -11,14 +11,11 @@ export default function Navigation() {
     return (
         <nav className="flex items-center gap-6 text-sm">
             {items.map((item) => (
-                // <a
-                //     key={item.href}
-                //     href={item.href}
-                //     className="transition-colors hover:text-amber-600"
-                // >
-                //     {item.label}
-                // </a>
-                <Link href={item.href}>
+                <Link
+                    href={item.href}
+                    key={item.href}
+                    className="transition-colors hover:text-amber-600"
+                >
                     {item.label}
                 </Link>
             ))}

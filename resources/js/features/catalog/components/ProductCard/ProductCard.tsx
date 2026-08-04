@@ -1,31 +1,33 @@
+import { Product } from "../../types/Product";
+
 type ProductCardProps = {
-    name: string;
-    price: number;
-    image: string;
+    product: Product;
 };
 
 export default function ProductCard({
-    name,
-    price,
-    image,
+    product,
 }: ProductCardProps) {
     return (
         <div className="overflow-hidden rounded-xl border border-[var(--color-border)] bg-white transition-shadow hover:shadow-md">
+
             <img
-                src={image}
-                alt={name}
+                src={product.image}
+                alt={product.name}
                 className="aspect-square w-full object-cover"
             />
 
             <div className="space-y-2 p-4">
+
                 <h3 className="font-semibold">
-                    {name}
+                    {product.name}
                 </h3>
 
                 <p className="text-lg font-bold text-amber-600">
-                    Rp {price.toLocaleString("id-ID")}
+                    Rp {product.price.toLocaleString("id-ID")}
                 </p>
+
             </div>
+
         </div>
     );
 }
