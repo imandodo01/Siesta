@@ -1,5 +1,7 @@
 import { PropsWithChildren } from "react";
+
 import Header from "@/features/public/components/Header";
+import Footer from "@/features/public/components/Footer";
 
 export default function PublicLayout({
     children,
@@ -12,9 +14,7 @@ export default function PublicLayout({
                 {children}
             </main>
 
-            <footer className="border-t border-[var(--color-border)] py-6 text-center text-sm">
-                © {new Date().getFullYear()} Siesta
-            </footer>
+            <Footer />
         </div>
     );
 }
