@@ -1,5 +1,6 @@
 import PublicLayout from "@/layouts/PublicLayout";
 import ProductCard from "../components/ProductCard";
+import ProductGrid from "../components/ProductGrid";
 import { Products } from "../data/Products";
 
 export default function CatalogPage() {
@@ -20,9 +21,7 @@ export default function CatalogPage() {
                 {/* <div className="rounded-xl border border-[var(--color-border)] p-8 text-center">
                     Product Grid (Coming Soon)
                 </div> */}
-                <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-                    <ProductCard product={Products[0]} />
-                </div>
+                <ProductGrid products={Products} />
 
             </div>
         </PublicLayout>
