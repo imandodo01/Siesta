@@ -27,6 +27,7 @@
         "vite": "^7.0.7"
     },
     "dependencies": {
+        "@fontsource/inter": "^5.3.0",
         "clsx": "^2.1.1"
     }
 }

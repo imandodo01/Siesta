@@ -1,3 +1,28 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+
+    --color-primary: #C68642;
+    --color-primary-dark: #A56A34;
+
+    --color-background: #FAF7F2;
+    --color-surface: #FFFFFF;
+
+    --color-text: #2F2A25;
+    --color-text-muted: #6B625B;
+
+    --color-border: #DDD2C5;
+
+    --color-success: #5D8A61;
+    --color-warning: #C9953F;
+    --color-danger: #C35A4B;
+
+}
+
+body {
+    background: var(--color-background);
+    color: var(--color-text);
+    font-family:Inter, system-ui, sans-serif;
+}
