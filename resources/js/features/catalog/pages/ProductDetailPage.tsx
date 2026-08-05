@@ -1,15 +1,27 @@
 import PublicLayout from "@/layouts/PublicLayout";
 import { Product } from "../types/Product";
+import Breadcrumb from "@/components/Breadcrumb";
+import ProductGrid from "../components/ProductGrid";
 
 type Props = {
     product: Product;
+    relatedProducts: Product[];
 };
 
 export default function ProductDetailPage({
     product,
+    relatedProducts,
 }: Props) {
+    console.log(product);
     return (
         <PublicLayout>
+            <Breadcrumb
+                items={[
+                    { label: "Home", href: "/" },
+                    { label: "Products", href: "/products" },
+                    { label: product.name },
+                ]}
+            />
             <div className="grid gap-10 lg:grid-cols-2">
 
                 <img
@@ -35,6 +47,13 @@ export default function ProductDetailPage({
                 </div>
 
             </div>
+            <section className="mt-16">
+                <h2 className="mb-6 text-2xl font-bold">
+                    Related Products
+                </h2>
+
+                <ProductGrid products={relatedProducts} />
+            </section>
         </PublicLayout>
     );
 }

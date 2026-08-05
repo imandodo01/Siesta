@@ -22,8 +22,16 @@ class CatalogController extends Controller
 
     public function show(Product $product): Response
     {
+        $relatedProducts = Product::query()
+            ->where('category', $product->category)
+            ->whereKeyNot($product->id)
+            ->inRandomOrder()
+            ->take(4)
+            ->get();
+
         return Inertia::render('catalog/pages/ProductDetailPage', [
-            'product' => new ProductResource($product),
+            'product' => (new ProductResource($product))->resolve(),
+            'relatedProducts' => ProductResource::collection($relatedProducts)->resolve(),
         ]);
     }
 }
