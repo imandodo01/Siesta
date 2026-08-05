@@ -1,6 +1,8 @@
 import { Product } from "@/features/catalog/types/Product";
 import PublicLayout from "@/layouts/PublicLayout";
 import ProductGrid from "@/features/catalog/components/ProductGrid";
+import Button from "@/components/Button/Button";
+import { Link } from "@inertiajs/react";
 
 type Props = {
     featuredProducts: Product[];
@@ -10,43 +12,244 @@ type Props = {
 export default function HomePage({ featuredProducts, newArrivals }: Props) {
     return (
         <PublicLayout>
-            <section className="py-24 text-center">
 
-                <h1 className="text-6xl font-bold">
-                    Commerce without noise.
-                </h1>
-
-                <p className="mx-auto mt-6 max-w-2xl text-lg text-gray-600">
-                    A production-inspired commerce platform focused on thoughtful shopping.
-                </p>
-
-            </section>
-            <section className="space-y-6">
-                <div>
-                    <h2 className="text-3xl font-bold">
-                        Featured Products
-                    </h2>
-                    <p className="text-gray-600">
-                        Hand-picked products from Siesta.
-                    </p>
+            {/* Hero */}
+            <section className="bg-stone-50 py-20">
+                <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 lg:grid-cols-2">
+                    <div>
+                        <h1 className="text-5xl font-bold leading-tight lg:text-6xl">
+                            Shopping Like It's a Dream
+                        </h1>
+                        <p className="mt-6 max-w-xl text-lg leading-8 text-gray-600">
+                            Curated essentials for work, home, and everyday living.
+                            Discover products designed with simplicity,
+                            quality, and everyday comfort in mind.
+                        </p>
+                        <div className="mt-10">
+                            <Link href="/products">
+                                <Button>
+                                    Explore Collection
+                                </Button>
+                            </Link>
+                        </div>
+                    </div>
+                    <div>
+                        <img
+                            // src="/images/hero/hero-banner.png"
+                            src="/images/hero/hero-uncutted.png"
+                            alt="Siesta Lifestyle"
+                            className="aspect-[4/3] w-full rounded-3xl object-cover shadow-2xl"
+                        />
+                    </div>
                 </div>
-                <ProductGrid
-                    products={featuredProducts}
-                />
             </section>
-            <section className="space-y-6 mt-8">
-                <div>
-                    <h2 className="text-3xl font-bold">
-                        New Arrivals
-                    </h2>
-                    <p className="text-gray-600">
-                        Check out our latest additions.
-                    </p>
+
+            {/* Featured Products */}
+            <section className="py-20">
+                <div className="mx-auto max-w-7xl px-6">
+
+                    <div className="mb-10">
+                        <h2 className="text-3xl font-bold">
+                            Featured Products
+                        </h2>
+
+                        <p className="mt-3 text-gray-600">
+                            Hand-picked products from Siesta.
+                        </p>
+                    </div>
+
+                    <ProductGrid products={featuredProducts} />
+
                 </div>
-                <ProductGrid
-                    products={newArrivals}
-                />
             </section>
+
+            {/* Categories */}
+            <section className="py-24">
+
+                <div className="mx-auto max-w-7xl px-6">
+
+                    <div className="mb-10">
+                        <h2 className="text-3xl font-bold">
+                            Browse by Category
+                        </h2>
+
+                        <p className="mt-3 text-gray-600">
+                            Find products tailored to your everyday lifestyle.
+                        </p>
+                    </div>
+
+                    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                    <Link
+                        href="/products?category=Coffee"
+                        className="group overflow-hidden rounded-2xl border bg-white transition duration-300 hover:-translate-y-1 hover:shadow-xl"
+                    >
+                        <img
+                            src="/images/categories/coffee.jpg"
+                            alt="Coffee"
+                            className="h-44 w-full object-cover transition duration-500 group-hover:scale-105"
+                        />
+                        <div className="p-6">
+                            <h3 className="text-xl font-semibold">
+                                Coffee
+                            </h3>
+                            <p className="mt-3 text-sm text-gray-600">
+                                Premium beans and brewing essentials.
+                            </p>
+                            <span className="mt-5 inline-block text-sm font-medium text-amber-600">
+                                Explore →
+                            </span>
+                        </div>
+                    </Link>
+                    <Link
+                        href="/products?category=Office"
+                        className="group overflow-hidden rounded-2xl border bg-white transition duration-300 hover:-translate-y-1 hover:shadow-xl"
+                    >
+                        <img
+                            src="/images/categories/office.jpg"
+                            alt="Office"
+                            className="h-44 w-full object-cover transition duration-500 group-hover:scale-105"
+                        />
+                        <div className="p-6">
+                            <h3 className="text-xl font-semibold">
+                                Office
+                            </h3>
+                            <p className="mt-3 text-sm text-gray-600">
+                                Workspace essentials for productivity.
+                            </p>
+                            <span className="mt-5 inline-block text-sm font-medium text-amber-600">
+                                Explore →
+                            </span>
+                        </div>
+                    </Link>
+                    <Link
+                        href="/products?category=Home"
+                        className="group overflow-hidden rounded-2xl border bg-white transition duration-300 hover:-translate-y-1 hover:shadow-xl"
+                    >
+                        <img
+                            src="/images/categories/home.jpg"
+                            alt="Home"
+                            className="h-44 w-full object-cover transition duration-500 group-hover:scale-105"
+                        />
+                        <div className="p-6">
+                            <h3 className="text-xl font-semibold">
+                                Home
+                            </h3>
+                            <p className="mt-3 text-sm text-gray-600">
+                                Comfort and simplicity for your home.
+                            </p>
+                            <span className="mt-5 inline-block text-sm font-medium text-amber-600">
+                                Explore →
+                            </span>
+                        </div>
+                    </Link>
+                    <Link
+                        href="/products?category=Lifestyle"
+                        className="group overflow-hidden rounded-2xl border bg-white transition duration-300 hover:-translate-y-1 hover:shadow-xl"
+                    >
+                        <img
+                            src="/images/categories/lifestyle.jpg"
+                            alt="Lifestyle"
+                            className="h-44 w-full object-cover transition duration-500 group-hover:scale-105"
+                        />
+                        <div className="p-6">
+                            <h3 className="text-xl font-semibold">
+                                Lifestyle
+                            </h3>
+                            <p className="mt-3 text-sm text-gray-600">
+                                Everyday essentials with timeless style.
+                            </p>
+                            <span className="mt-5 inline-block text-sm font-medium text-amber-600">
+                                Explore →
+                            </span>
+                        </div>
+                    </Link>
+                </div>
+
+                </div>
+            </section>
+
+            {/* Why Siesta? */}
+            <section className="bg-stone-50 py-24">
+                <div className="mx-auto max-w-7xl px-6">
+                    <div className="mb-12 text-center">
+                        <h2 className="text-3xl font-bold">
+                            Why Siesta?
+                        </h2>
+                        <p className="mt-3 text-gray-600">
+                            Thoughtfully selected essentials for everyday living.
+                        </p>
+                    </div>
+                    <div className="grid gap-6 md:grid-cols-3">
+                        <div className="rounded-2xl bg-white p-8 shadow-sm">
+                            <h3 className="text-xl font-semibold">
+                                Curated Selection
+                            </h3>
+                            <p className="mt-3 text-gray-600">
+                                Every product is chosen for quality, function and simplicity.
+                            </p>
+                        </div>
+                        <div className="rounded-2xl bg-white p-8 shadow-sm">
+                            <h3 className="text-xl font-semibold">
+                                Reliable Delivery
+                            </h3>
+                            <p className="mt-3 text-gray-600">
+                                Secure shipping and dependable service from checkout to delivery.
+                            </p>
+                        </div>
+                        <div className="rounded-2xl bg-white p-8 shadow-sm">
+                            <h3 className="text-xl font-semibold">
+                                Everyday Quality
+                            </h3>
+                            <p className="mt-3 text-gray-600">
+                                Built for daily use with comfort and durability in mind.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* New Arrivals */}
+            <section className="py-20">
+                <div className="mx-auto max-w-7xl px-6">
+
+                    <div className="mb-10">
+                        <h2 className="text-3xl font-bold">
+                            New Arrivals
+                        </h2>
+
+                        <p className="mt-3 text-gray-600">
+                            Discover the latest additions to our collection.
+                        </p>
+                    </div>
+
+                    <ProductGrid products={newArrivals} />
+
+                </div>
+            </section>
+
+            {/* Newsletter */}
+            <section className="py-24">
+                <div className="mx-auto max-w-4xl rounded-3xl bg-gradient-to-r from-stone-100 to-stone-50 px-8 py-16 text-center">
+                    <h2 className="text-4xl font-bold">
+                        Stay Inspired
+                    </h2>
+                    <p className="mx-auto mt-4 max-w-2xl text-gray-600">
+                        Join our newsletter to receive curated collections,
+                        seasonal recommendations, and updates from Siesta.
+                    </p>
+                    <div className="mx-aut mt-10 flex max-w-xl flex-col gap-4 sm:flex-row">
+                        <input
+                            type="email"
+                            placeholder="newsletter@siesta.com"
+                            className="flex-1 rounded-xl border border-gray-300 bg-white px-5 py-3 focus:border-amber-500 focus:outline-none"
+                        />
+                        <Button>
+                            Join the Journey
+                        </Button>
+                    </div>
+                </div>
+            </section>
+
         </PublicLayout>
     );
 }
