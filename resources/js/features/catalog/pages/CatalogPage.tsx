@@ -1,12 +1,23 @@
 import PublicLayout from "@/layouts/PublicLayout";
 import Toolbar from "../components/Toolbar";
 import ProductGrid from "../components/ProductGrid";
+import Pagination from "../components/Pagination";
 import ProductFilter from "../components/ProductFilter";
 import useCatalog from "../hooks/useCatalog";
 import { Product } from "../types/Product";
 
+type PaginationMeta = {
+    currentPage: number;
+    lastPage: number;
+    perPage: number;
+    total: number;
+};
+
 type Props = {
-    products: Product[];
+    products: {
+        data: Product[];
+        meta: PaginationMeta;
+    };
 };
 
 export default function CatalogPage({
@@ -21,7 +32,7 @@ export default function CatalogPage({
         setSearch,
         setCategory,
         setSort,
-    } = useCatalog(products);
+    } = useCatalog(products.data);
 
     return (
         <PublicLayout>
@@ -56,6 +67,10 @@ export default function CatalogPage({
                         ) : (
                             <ProductGrid products={filteredProducts} />
                         )}
+                        <Pagination
+                            currentPage={products.meta.currentPage}
+                            lastPage={products.meta.lastPage}
+                        />
                     </div>
 
                 </div>

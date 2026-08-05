@@ -13,10 +13,19 @@ class CatalogController extends Controller
     {
         $products = Product::query()
             ->orderBy('name')
-            ->get();
+            ->paginate(12)
+            ->withQueryString();
 
         return Inertia::render('catalog/pages/CatalogPage', [
-            'products' => ProductResource::collection($products)->resolve(),
+            'products' => [
+                'data' => ProductResource::collection($products->items())->resolve(),
+                'meta' => [
+                    'currentPage' => $products->currentPage(),
+                    'lastPage' => $products->lastPage(),
+                    'perPage' => $products->perPage(),
+                    'total' => $products->total(),
+                ],
+            ],
         ]);
     }
 
