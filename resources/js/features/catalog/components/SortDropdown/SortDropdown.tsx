@@ -5,10 +5,10 @@ export default function SortDropdown({ value, onChange }: { value: string; onCha
             value={value}
             onChange={(e) => onChange(e.target.value)}
             >
-            <option>Newest</option>
-            <option>Price ↑</option>
-            <option>Price ↓</option>
-            <option>Name A-Z</option>
+            <option value="Newest">Newest</option>
+            <option value="Price Low">Price ↑</option>
+            <option value="Price High">Price ↓</option>
+            <option value="Name">Name A-Z</option>
         </select>
     );
 }
