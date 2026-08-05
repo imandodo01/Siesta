@@ -10,8 +10,9 @@ use App\Http\Controllers\CatalogController;
 // use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+// Route::get('/', [HomeController::class, 'index'])->name('home');
 
+Route::get('/', [CatalogController::class,'home',])->name('home');
 Route::get('/products', [CatalogController::class, 'index'])->name('products');
 Route::get('/products/{product:slug}', [CatalogController::class,'show'])->name('products.show');
 

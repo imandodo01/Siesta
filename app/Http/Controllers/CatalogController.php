@@ -43,4 +43,16 @@ class CatalogController extends Controller
             'relatedProducts' => ProductResource::collection($relatedProducts)->resolve(),
         ]);
     }
+
+    public function home(): Response
+    {
+        $featuredProducts = Product::query()
+            ->where('is_featured', true)
+            ->take(8)
+            ->get();
+
+    return Inertia::render('public/pages/HomePage', [
+            'featuredProducts' => ProductResource::collection($featuredProducts)->resolve(),
+        ]);
+    }
 }
