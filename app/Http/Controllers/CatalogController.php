@@ -51,8 +51,14 @@ class CatalogController extends Controller
             ->take(8)
             ->get();
 
-    return Inertia::render('public/pages/HomePage', [
+        $newArrivals = Product::query()
+            ->latest()
+            ->take(8)
+            ->get();
+
+        return Inertia::render('public/pages/HomePage', [
             'featuredProducts' => ProductResource::collection($featuredProducts)->resolve(),
+            'newArrivals' => ProductResource::collection($newArrivals)->resolve(),
         ]);
     }
 }

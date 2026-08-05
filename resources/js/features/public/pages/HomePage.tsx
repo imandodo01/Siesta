@@ -4,9 +4,10 @@ import ProductGrid from "@/features/catalog/components/ProductGrid";
 
 type Props = {
     featuredProducts: Product[];
+    newArrivals: Product[];
 };
 
-export default function HomePage({ featuredProducts }: Props) {
+export default function HomePage({ featuredProducts, newArrivals }: Props) {
     return (
         <PublicLayout>
             <section className="py-24 text-center">
@@ -31,6 +32,19 @@ export default function HomePage({ featuredProducts }: Props) {
                 </div>
                 <ProductGrid
                     products={featuredProducts}
+                />
+            </section>
+            <section className="space-y-6 mt-8">
+                <div>
+                    <h2 className="text-3xl font-bold">
+                        New Arrivals
+                    </h2>
+                    <p className="text-gray-600">
+                        Check out our latest additions.
+                    </p>
+                </div>
+                <ProductGrid
+                    products={newArrivals}
                 />
             </section>
         </PublicLayout>
