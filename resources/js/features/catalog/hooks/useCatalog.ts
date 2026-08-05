@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
-import { products } from "../data/Products";
+import { Product } from "../types/Product";
 
-export default function CatalogPage() {
+export default function useCatalog(products: Product[]) {
 
     const [search, setSearch] = useState("");
     const [category, setCategory] = useState("All");
@@ -39,10 +39,10 @@ export default function CatalogPage() {
         }
 
         return result;
-    }, [search, category, sort]);
+    }, [products, search, category, sort]);
 
     return {
-        products: filteredProducts,
+        filteredProducts,
         search,
         category,
         sort,

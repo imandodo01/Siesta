@@ -2,19 +2,26 @@ import PublicLayout from "@/layouts/PublicLayout";
 import Toolbar from "../components/Toolbar";
 import ProductGrid from "../components/ProductGrid";
 import ProductFilter from "../components/ProductFilter";
-import useCatalog from "../hook/useCatalog";
+import useCatalog from "../hooks/useCatalog";
+import { Product } from "../types/Product";
 
-export default function CatalogPage() {
+type Props = {
+    products: Product[];
+};
+
+export default function CatalogPage({
+    products,
+}: Props) {
 
     const {
-        products,
+        filteredProducts,
         search,
         category,
         sort,
         setSearch,
         setCategory,
         setSort,
-    } = useCatalog();
+    } = useCatalog(products);
 
     return (
         <PublicLayout>
@@ -42,12 +49,12 @@ export default function CatalogPage() {
                             onCategoryChange={setCategory}
                             onSortChange={setSort}
                         />
-                        {products.length === 0 ? (
+                        {filteredProducts.length === 0 ? (
                             <div className="rounded-xl border border-dashed p-16 text-center">
                                 No products found.
                             </div>
                         ) : (
-                            <ProductGrid products={products} />
+                            <ProductGrid products={filteredProducts} />
                         )}
                     </div>
 
