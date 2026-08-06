@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use Inertia\Inertia;
 use Inertia\Response;
+use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Http\Resources\ProductResource;
 
 class CatalogController extends Controller
 {
-    public function index(): Response
+    public function index(Request $request): Response
     {
         $products = Product::query()
             ->orderBy('name')

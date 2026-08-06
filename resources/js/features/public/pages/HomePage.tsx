@@ -3,6 +3,7 @@ import PublicLayout from "@/layouts/PublicLayout";
 import ProductGrid from "@/features/catalog/components/ProductGrid";
 import Button from "@/components/Button/Button";
 import { Link } from "@inertiajs/react";
+import Container from "@/features/catalog/components/Container/Container";
 
 type Props = {
     featuredProducts: Product[];
@@ -46,7 +47,7 @@ export default function HomePage({ featuredProducts, newArrivals }: Props) {
 
             {/* Featured Products */}
             <section className="py-20">
-                <div className="mx-auto max-w-7xl px-6">
+                <Container>
 
                     <div className="mb-10">
                         <h2 className="text-3xl font-bold">
@@ -60,14 +61,12 @@ export default function HomePage({ featuredProducts, newArrivals }: Props) {
 
                     <ProductGrid products={featuredProducts} />
 
-                </div>
+                </Container>
             </section>
 
             {/* Categories */}
             <section className="py-24">
-
-                <div className="mx-auto max-w-7xl px-6">
-
+                <Container>
                     <div className="mb-10">
                         <h2 className="text-3xl font-bold">
                             Browse by Category
@@ -165,12 +164,12 @@ export default function HomePage({ featuredProducts, newArrivals }: Props) {
                     </Link>
                 </div>
 
-                </div>
+                </Container>
             </section>
 
             {/* Why Siesta? */}
             <section className="bg-stone-50 py-24">
-                <div className="mx-auto max-w-7xl px-6">
+                <Container>
                     <div className="mb-12 text-center">
                         <h2 className="text-3xl font-bold">
                             Why Siesta?
@@ -205,12 +204,12 @@ export default function HomePage({ featuredProducts, newArrivals }: Props) {
                             </p>
                         </div>
                     </div>
-                </div>
+                </Container>
             </section>
 
             {/* New Arrivals */}
             <section className="py-20">
-                <div className="mx-auto max-w-7xl px-6">
+                <Container>
 
                     <div className="mb-10">
                         <h2 className="text-3xl font-bold">
@@ -224,7 +223,7 @@ export default function HomePage({ featuredProducts, newArrivals }: Props) {
 
                     <ProductGrid products={newArrivals} />
 
-                </div>
+                </Container>
             </section>
 
             {/* Newsletter */}
