@@ -6,7 +6,7 @@ use Inertia\Inertia;
 use Inertia\Response;
 use Illuminate\Http\Request;
 use App\Models\Product;
-use App\Http\Resources\ProductResource;
+use App\Http\Resources\ProductResource; 
 
 class CatalogController extends Controller
 {
