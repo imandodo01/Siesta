@@ -1,11 +1,4 @@
 import PublicLayout from "@/layouts/PublicLayout";
 
-export default function ContactPage() {
-    return (
-        <PublicLayout>
-            <h1 className="text-4xl font-bold">
-                Contact Us
-            </h1>
-        </PublicLayout>
-    );
-}
+type Contact = { email?: string | null; phone?: string | null; address?: string | null; business_hours?: string | null } | null;
+export default function ContactPage({ contact }: { contact: Contact }) { return <PublicLayout><div className="mx-auto max-w-3xl rounded-3xl border border-[var(--color-border)] bg-white p-8 shadow-sm"><p className="text-sm font-semibold uppercase tracking-[0.2em] text-stone-500">Get in touch</p><h1 className="mt-4 text-4xl font-bold">Contact Us</h1><div className="mt-8 space-y-5 text-[var(--color-text-muted)]">{contact?.email && <p><span className="font-semibold text-[var(--color-text)]">Email: </span>{contact.email}</p>}{contact?.phone && <p><span className="font-semibold text-[var(--color-text)]">Phone: </span>{contact.phone}</p>}{contact?.address && <p><span className="font-semibold text-[var(--color-text)]">Address: </span>{contact.address}</p>}{contact?.business_hours && <p><span className="font-semibold text-[var(--color-text)]">Hours: </span>{contact.business_hours}</p>}{!contact && <p>Contact details will be available soon.</p>}</div></div></PublicLayout>; }

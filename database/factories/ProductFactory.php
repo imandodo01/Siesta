@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -31,6 +32,8 @@ class ProductFactory extends Factory
             'Linen Cushion',
         ]);
 
+        $category = fake()->randomElement(['Coffee', 'Office', 'Home', 'Lifestyle']);
+
         return [
             'sku' => strtoupper(fake()->bothify('SKU-####')),
             'slug' => Str::slug($name) . '-' . fake()->unique()->numberBetween(1, 999),
@@ -38,14 +41,11 @@ class ProductFactory extends Factory
             'description' => fake()->paragraph(),
             'price' => fake()->numberBetween(50000, 750000),
             'image' => '/images/placeholders/product-placeholder.png',
-            'category' => fake()->randomElement([
-                'Coffee',
-                'Office',
-                'Home',
-                'Lifestyle',
-            ]),
+            'category' => $category,
+            'category_id' => Category::query()->firstOrCreate(['name' => $category], ['slug' => Str::slug($category)])->id,
             'stock' => fake()->numberBetween(0, 100),
             'is_featured' => fake()->boolean(20),
+            'is_active' => true,
         ];
     }
 }

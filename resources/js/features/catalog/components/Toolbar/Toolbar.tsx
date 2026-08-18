@@ -8,13 +8,15 @@ export default function Toolbar(
     sort,
     onSearchChange,
     onCategoryChange,
-    onSortChange }: {
+    onSortChange,
+    categories }: {
         search: string;
         category: string;
         sort: string;
         onSearchChange: (value: string) => void;
         onCategoryChange: (value: string) => void;
         onSortChange: (value: string) => void;
+        categories: { name: string; slug: string }[];
     }
 ) {
     return (
@@ -22,7 +24,7 @@ export default function Toolbar(
             <SearchBar value={search} onChange={onSearchChange} />
 
             <div className="flex gap-4">
-                <CategoryFilter value={category} onChange={onCategoryChange} />
+                <CategoryFilter value={category} categories={categories} onChange={onCategoryChange} />
                 <SortDropdown value={sort} onChange={onSortChange} />
             </div>
         </div>

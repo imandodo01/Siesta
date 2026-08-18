@@ -1,11 +1,6 @@
-import { products } from "../../data/Products";
+type Category = { name: string; slug: string };
 
-export default function CategoryFilter({ value, onChange }: { value: string; onChange: (value: string) => void }) {
-
-    const categories = [
-        "All",
-        ...new Set(products.map((product) => product.category)),
-    ];
+export default function CategoryFilter({ value, onChange, categories }: { value: string; onChange: (value: string) => void; categories: Category[] }) {
 
     return (
         <select
@@ -13,9 +8,10 @@ export default function CategoryFilter({ value, onChange }: { value: string; onC
             value={value}
             onChange={(e) => onChange(e.target.value)}
         >
+            <option value="All">All Products</option>
             {categories.map((category) => (
-                <option key={category} value={category}>
-                    {category}
+                <option key={category.slug} value={category.slug}>
+                    {category.name}
                 </option>
             ))}
         </select>

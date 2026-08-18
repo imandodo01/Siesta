@@ -5,6 +5,7 @@ import Pagination from "../components/Pagination";
 import ProductFilter from "../components/ProductFilter";
 import useCatalog from "../hooks/useCatalog";
 import { Product } from "../types/Product";
+import { router } from "@inertiajs/react";
 
 type PaginationMeta = {
     currentPage: number;
@@ -18,10 +19,14 @@ type Props = {
         data: Product[];
         meta: PaginationMeta;
     };
+    categories: { name: string; slug: string }[];
+    selectedCategory?: string;
 };
 
 export default function CatalogPage({
     products,
+    categories,
+    selectedCategory,
 }: Props) {
 
     const {
@@ -32,7 +37,12 @@ export default function CatalogPage({
         setSearch,
         setCategory,
         setSort,
-    } = useCatalog(products.data);
+    } = useCatalog(products.data, selectedCategory || "All");
+
+    const changeCategory = (value: string) => {
+        setCategory(value);
+        router.get(route("products"), value === "All" ? {} : { category: value }, { preserveScroll: true });
+    };
 
     return (
         <PublicLayout>
@@ -57,7 +67,8 @@ export default function CatalogPage({
                             category={category}
                             sort={sort}
                             onSearchChange={setSearch}
-                            onCategoryChange={setCategory}
+                            categories={categories}
+                            onCategoryChange={changeCategory}
                             onSortChange={setSort}
                         />
                         {filteredProducts.length === 0 ? (
@@ -80,4 +91,3 @@ export default function CatalogPage({
         </PublicLayout>
     );
 }
-

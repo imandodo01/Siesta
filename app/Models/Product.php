@@ -18,7 +18,19 @@ class Product extends Model
         'price',
         'image',
         'category',
+        'category_id',
         'stock',
         'is_featured',
+        'is_active',
     ];
+
+    protected $casts = [
+        'is_featured' => 'boolean',
+        'is_active' => 'boolean',
+    ];
+
+    public function categoryRelation()
+    {
+        return $this->belongsTo(Category::class, 'category_id');
+    }
 }

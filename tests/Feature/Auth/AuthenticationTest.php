@@ -27,7 +27,7 @@ class AuthenticationTest extends TestCase
         ]);
 
         $this->assertAuthenticated();
-        $response->assertRedirect(route('dashboard', absolute: false));
+        $response->assertRedirect(route('account', absolute: false));
     }
 
     public function test_users_can_not_authenticate_with_invalid_password(): void
@@ -50,5 +50,29 @@ class AuthenticationTest extends TestCase
 
         $this->assertGuest();
         $response->assertRedirect('/');
+    }
+
+    public function test_users_can_login_again_after_logout(): void
+    {
+        $user = User::factory()->create();
+
+        $this->get('/login')->assertOk();
+
+        $this->post('/login', [
+            'email' => $user->email,
+            'password' => 'password',
+        ])->assertRedirect(route('account', absolute: false));
+
+        $this->post('/logout')
+            ->assertRedirect('/');
+
+        $this->get('/login')->assertOk();
+
+        $this->post('/login', [
+            'email' => $user->email,
+            'password' => 'password',
+        ])->assertRedirect(route('account', absolute: false));
+
+        $this->assertAuthenticatedAs($user);
     }
 }

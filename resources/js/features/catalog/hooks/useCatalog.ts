@@ -1,10 +1,10 @@
 import { useMemo, useState } from "react";
 import { Product } from "../types/Product";
 
-export default function useCatalog(products: Product[]) {
+export default function useCatalog(products: Product[], initialCategory = "All") {
 
     const [search, setSearch] = useState("");
-    const [category, setCategory] = useState("All");
+    const [category, setCategory] = useState(initialCategory);
     const [sort, setSort] = useState("Newest");
 
     const filteredProducts = useMemo(() => {
@@ -20,7 +20,7 @@ export default function useCatalog(products: Product[]) {
 
         if (category !== "All") {
             result = result.filter(
-                (product) => product.category === category
+                (product) => (product.categorySlug ?? product.category) === category
             );
         }
 

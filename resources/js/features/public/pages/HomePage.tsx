@@ -4,46 +4,21 @@ import ProductGrid from "@/features/catalog/components/ProductGrid";
 import Button from "@/components/Button/Button";
 import { Link } from "@inertiajs/react";
 import Container from "@/features/catalog/components/Container/Container";
+import HeroSlider from "../components/HeroSlider";
 
 type Props = {
     featuredProducts: Product[];
     newArrivals: Product[];
+    banners: { id: number; title: string; description?: string | null; buttonLabel?: string | null; buttonUrl?: string | null; image: string }[];
+    categories: { name: string; slug: string; image?: string | null }[];
 };
 
-export default function HomePage({ featuredProducts, newArrivals }: Props) {
+export default function HomePage({ featuredProducts, newArrivals, banners, categories }: Props) {
     return (
         <PublicLayout>
 
             {/* Hero */}
-            <section className="bg-stone-50 py-20">
-                <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 lg:grid-cols-2">
-                    <div>
-                        <h1 className="text-5xl font-bold leading-tight lg:text-6xl">
-                            Shopping Like It's a Dream
-                        </h1>
-                        <p className="mt-6 max-w-xl text-lg leading-8 text-gray-600">
-                            Curated essentials for work, home, and everyday living.
-                            Discover products designed with simplicity,
-                            quality, and everyday comfort in mind.
-                        </p>
-                        <div className="mt-10">
-                            <Link href="/products">
-                                <Button>
-                                    Explore Collection
-                                </Button>
-                            </Link>
-                        </div>
-                    </div>
-                    <div>
-                        <img
-                            // src="/images/hero/hero-banner.png"
-                            src="/images/hero/hero-uncutted.png"
-                            alt="Siesta Lifestyle"
-                            className="aspect-[4/3] w-full rounded-3xl object-cover shadow-2xl"
-                        />
-                    </div>
-                </div>
-            </section>
+            <HeroSlider banners={banners} />
 
             {/* Featured Products */}
             <section className="py-20">
@@ -78,8 +53,8 @@ export default function HomePage({ featuredProducts, newArrivals }: Props) {
                     </div>
 
                     <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                    <Link
-                        href="/products?category=Coffee"
+                    {categories.some((category) => category.slug === "coffee") && <Link
+                        href="/products?category=coffee"
                         className="group overflow-hidden rounded-2xl border bg-white transition duration-300 hover:-translate-y-1 hover:shadow-xl"
                     >
                         <img
@@ -98,9 +73,9 @@ export default function HomePage({ featuredProducts, newArrivals }: Props) {
                                 Explore →
                             </span>
                         </div>
-                    </Link>
-                    <Link
-                        href="/products?category=Office"
+                    </Link>}
+                    {categories.some((category) => category.slug === "office") && <Link
+                        href="/products?category=office"
                         className="group overflow-hidden rounded-2xl border bg-white transition duration-300 hover:-translate-y-1 hover:shadow-xl"
                     >
                         <img
@@ -119,9 +94,9 @@ export default function HomePage({ featuredProducts, newArrivals }: Props) {
                                 Explore →
                             </span>
                         </div>
-                    </Link>
-                    <Link
-                        href="/products?category=Home"
+                    </Link>}
+                    {categories.some((category) => category.slug === "home") && <Link
+                        href="/products?category=home"
                         className="group overflow-hidden rounded-2xl border bg-white transition duration-300 hover:-translate-y-1 hover:shadow-xl"
                     >
                         <img
@@ -140,9 +115,9 @@ export default function HomePage({ featuredProducts, newArrivals }: Props) {
                                 Explore →
                             </span>
                         </div>
-                    </Link>
-                    <Link
-                        href="/products?category=Lifestyle"
+                    </Link>}
+                    {categories.some((category) => category.slug === "lifestyle") && <Link
+                        href="/products?category=lifestyle"
                         className="group overflow-hidden rounded-2xl border bg-white transition duration-300 hover:-translate-y-1 hover:shadow-xl"
                     >
                         <img
@@ -161,7 +136,7 @@ export default function HomePage({ featuredProducts, newArrivals }: Props) {
                                 Explore →
                             </span>
                         </div>
-                    </Link>
+                    </Link>}
                 </div>
 
                 </Container>
